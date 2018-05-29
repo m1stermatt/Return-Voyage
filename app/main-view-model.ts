@@ -1,23 +1,24 @@
-import { Observable } from "data/observable";
+import { Observable } from 'data/observable';
+import { Label } from "ui/label";
 
 class MainWorldModel extends Observable {
-    counter: number;
+
+    messages: Array<string>;
+    index: number = -1;
 
     constructor() {
         super();
-
-        this.counter = 42;
-        this.set("message", this.counter + " taps left");
+        this.messages = ["hello", "how are you", "no u", "knock"];
+        this.set("message", "Hello world");
     }
 
     tapAction() {
-        this.counter--;
-        if (this.counter <= 0) {
-            this.set("message", "Yay");
+        this.index++;
+        if (this.index >= this.messages.length) {
+            this.index = 0;
         }
-        else {
-            this.set("message", this.counter + " taps left")
-        }
+        var label : Label = this.get("message");
+        this.set("message", label.text + this.messages[this.index]);
     }
 }
 
