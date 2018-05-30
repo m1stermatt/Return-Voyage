@@ -1,4 +1,4 @@
-import { Observable } from 'data/observable';
+import { Observable, fromObject } from 'data/observable';
 import { Label } from "ui/label";
 
 class MainWorldModel extends Observable {
@@ -17,8 +17,7 @@ class MainWorldModel extends Observable {
         if (this.index >= this.messages.length) {
             this.index = 0;
         }
-        var label : Label = this.get("message");
-        this.set("message", label.text + this.messages[this.index]);
+        this.set("message", this.get("message").text + this.messages[this.index]);
     }
 }
 
